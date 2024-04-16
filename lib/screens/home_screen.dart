@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:learn_flutter_app/data/data.dart';
 import 'package:learn_flutter_app/screens/lessons_list_screen.dart';
+import 'package:learn_flutter_app/constants/colors.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({
@@ -15,10 +16,10 @@ class HomeScreen extends StatelessWidget {
         title: const Text(
           "تعلم Flutter",
         ),
-        backgroundColor: const Color(0xff48a1bd),
+        backgroundColor: primaryColor,
         foregroundColor: Colors.white,
       ),
-      backgroundColor: const Color.fromARGB(255, 228, 239, 243),
+      backgroundColor: backgroundColor,
       // ---- Body ----
       body: Padding(
         padding: const EdgeInsets.all(16),
@@ -28,7 +29,7 @@ class HomeScreen extends StatelessWidget {
               width: double.infinity,
               padding: const EdgeInsets.all(16),
               decoration: BoxDecoration(
-                color: const Color(0xff48a1bd),
+                color: primaryColor,
                 borderRadius: BorderRadius.circular(16),
               ),
               child: const Center(
@@ -44,13 +45,14 @@ class HomeScreen extends StatelessWidget {
             const SizedBox(
               height: 16,
             ),
+            // 4 categories buttons
             GridView(
               shrinkWrap: true,
               gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: 2, mainAxisSpacing: 10, crossAxisSpacing: 10),
               children: [
                 for (Map data in categoriesList)
-                  GestureDetector(
+                  InkWell(
                     onTap: () {
                       Navigator.push(
                         context,
@@ -71,7 +73,7 @@ class HomeScreen extends StatelessWidget {
                           Icon(
                             data["icon"],
                             size: 40,
-                            color: const Color(0xffaf9c6f),
+                            color: secondaryColor,
                           ),
                           const SizedBox(
                             height: 8,

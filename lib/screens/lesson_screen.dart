@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:highlight/languages/dart.dart';
 import 'package:flutter_highlight/themes/monokai-sublime.dart';
+import 'package:learn_flutter_app/constants/colors.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
@@ -21,7 +22,7 @@ class _LessonScreenState extends State<LessonScreen> {
   @override
   void initState() {
     super.initState();
-    // --- YoutubePlayer
+    // --- YoutubePlayer controller
     _controller = YoutubePlayerController(
       initialVideoId: widget.data["youtube_id"],
       flags: const YoutubePlayerFlags(
@@ -30,7 +31,7 @@ class _LessonScreenState extends State<LessonScreen> {
       ),
     );
 
-    // --- code controller
+    // --- Code controller
     final code = widget.data["code"];
     _codeController = CodeController(
       text: code,
@@ -48,17 +49,20 @@ class _LessonScreenState extends State<LessonScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      // ---- AppBar ----
       appBar: AppBar(
           title: Text(widget.data["name"]),
-          backgroundColor: const Color(0xff48a1bd),
+          backgroundColor: primaryColor,
           foregroundColor: Colors.white),
-      backgroundColor: const Color.fromARGB(255, 228, 239, 243),
+      backgroundColor: backgroundColor,
+      // ---- Body ----
       body: Padding(
         padding: const EdgeInsets.all(16),
         child: SingleChildScrollView(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              // ---- Youtube Video
               YoutubePlayer(
                 controller: _controller,
                 showVideoProgressIndicator: true,
@@ -71,8 +75,9 @@ class _LessonScreenState extends State<LessonScreen> {
                 style: TextStyle(
                     fontSize: 20,
                     fontWeight: FontWeight.bold,
-                    color: Color(0xff48a1bd)),
+                    color: primaryColor),
               ),
+              // ---- Description
               Text(
                 widget.data["description"],
               ),
@@ -84,11 +89,12 @@ class _LessonScreenState extends State<LessonScreen> {
                 style: TextStyle(
                     fontSize: 20,
                     fontWeight: FontWeight.bold,
-                    color: Color(0xff48a1bd)),
+                    color: primaryColor),
               ),
               const SizedBox(
                 height: 8,
               ),
+              // ---- Dart Code Example
               Directionality(
                 textDirection: TextDirection.ltr,
                 child: CodeTheme(
@@ -102,12 +108,13 @@ class _LessonScreenState extends State<LessonScreen> {
               const SizedBox(
                 height: 50,
               ),
+              // ---- Button to open a URL
               ElevatedButton(
                 onPressed: () {
                   launchUrl(Uri.parse(widget.data["url"]));
                 },
                 style: ElevatedButton.styleFrom(
-                    backgroundColor: const Color(0xff48a1bd),
+                    backgroundColor: primaryColor,
                     fixedSize: Size(MediaQuery.of(context).size.width, 45)),
                 child: const Text(
                   "إقرأ المزيد",
