@@ -67,9 +67,9 @@ class _LessonScreenState extends State<LessonScreen> {
                 controller: _controller,
                 showVideoProgressIndicator: true,
               ),
-              const SizedBox(
-                height: 30,
-              ),
+              const SizedBox(height: 30),
+
+              // ---- Description
               const Text(
                 "الوصف",
                 style: TextStyle(
@@ -77,13 +77,15 @@ class _LessonScreenState extends State<LessonScreen> {
                     fontWeight: FontWeight.bold,
                     color: primaryColor),
               ),
-              // ---- Description
               Text(
                 widget.data["description"],
+                style: const TextStyle(
+                  fontSize: 16,
+                ),
               ),
-              const SizedBox(
-                height: 30,
-              ),
+              const SizedBox(height: 30),
+
+              // ---- Dart Code Example
               const Text(
                 "مثال",
                 style: TextStyle(
@@ -91,10 +93,7 @@ class _LessonScreenState extends State<LessonScreen> {
                     fontWeight: FontWeight.bold,
                     color: primaryColor),
               ),
-              const SizedBox(
-                height: 8,
-              ),
-              // ---- Dart Code Example
+              const SizedBox(height: 8),
               Directionality(
                 textDirection: TextDirection.ltr,
                 child: CodeTheme(
@@ -105,9 +104,8 @@ class _LessonScreenState extends State<LessonScreen> {
                   ),
                 ),
               ),
-              const SizedBox(
-                height: 50,
-              ),
+              const SizedBox(height: 50),
+
               // ---- Button to open a URL
               ElevatedButton(
                 onPressed: () {
@@ -121,9 +119,6 @@ class _LessonScreenState extends State<LessonScreen> {
                   style: TextStyle(
                       color: Colors.white, fontWeight: FontWeight.bold),
                 ),
-              ),
-              const SizedBox(
-                height: 8,
               ),
             ],
           ),

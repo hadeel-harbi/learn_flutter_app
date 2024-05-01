@@ -13,15 +13,18 @@ class MainApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return const MaterialApp(
       debugShowCheckedModeBanner: false,
+      // لضمان عرض العناصر بشكل صحيح وفقًا لللغة المحددة
       localizationsDelegates: [
         GlobalMaterialLocalizations.delegate,
         GlobalWidgetsLocalizations.delegate,
         GlobalCupertinoLocalizations.delegate,
       ],
+      // تحديد اللغات المدعومة في التطبيق
       supportedLocales: [
         Locale('en'), // English
         Locale('ar'), // Arabic
       ],
+      // تعيين اللغة العربية في التطبيق
       locale: Locale('ar'),
       home: HomeScreen(),
     );

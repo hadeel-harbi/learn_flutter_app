@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:learn_flutter_app/data/data.dart';
-import 'package:learn_flutter_app/screens/lessons_list_screen.dart';
 import 'package:learn_flutter_app/constants/colors.dart';
+import 'package:learn_flutter_app/widgets/category_widget.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({
@@ -45,58 +45,14 @@ class HomeScreen extends StatelessWidget {
             const SizedBox(
               height: 16,
             ),
-            // 4 categories buttons
+            // الفئات الأربعة
             GridView(
               shrinkWrap: true,
               gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: 2, mainAxisSpacing: 10, crossAxisSpacing: 10),
               children: [
-                for (Map data in categoriesList)
-                  InkWell(
-                    onTap: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => LessonsList(
-                            categoryName: data["name"],
-                          ),
-                        ),
-                      );
-                    },
-                    child: Container(
-                      decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.circular(16)),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Icon(
-                            data["icon"],
-                            size: 40,
-                            color: secondaryColor,
-                          ),
-                          const SizedBox(
-                            height: 8,
-                          ),
-                          Text(
-                            data["name"],
-                            style: const TextStyle(
-                                fontSize: 16, fontWeight: FontWeight.bold),
-                          ),
-                          const SizedBox(
-                            height: 8,
-                          ),
-                          Text(
-                            data["name_ar"],
-                            style: const TextStyle(
-                                color: Colors.grey,
-                                fontSize: 16,
-                                fontWeight: FontWeight.bold),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
+                // for-loop in categoriesList using single widget
+                for (Map data in categoriesList) CategoryWidget(data: data),
               ],
             ),
             const Spacer(),
